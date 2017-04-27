@@ -6,18 +6,48 @@
 	       http://www.springframework.org/schema/beans/spring-beans.xsd
 	       http://www.springframework.org/schema/mvc
     	   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
+	
+	<!-- 日期转换类 -->
+	<bean id="converterClass" class="com.smart.mvc.converter.DateFormatter"/>
+	
+	<!-- 自定义转换器 -->
+	<bean id="formaterConverter" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<ref bean="converterClass"/>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- 请处理器 -->
+	<!--<mvc:annotation-driven conversion-service="formaterConverter">
+		<mvc:message-converters>
+			<bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven> -->
+	
 	<!-- 自定义Json解析器 -->
-	<mvc:annotation-driven>
+	<mvc:annotation-driven conversion-service="formaterConverter">
 		<mvc:argument-resolvers>
 			<bean class="com.smart.mvc.resovler.MethodArgumentResovler" />
 		</mvc:argument-resolvers>
 		<mvc:message-converters>
-			<bean
-				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" />
+			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json</value>
+					</list>
+				</property>
+			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
+	
 	<!-- 自定义异常处理 -->
 	<bean id="exceptionResolver" class="com.smart.mvc.exception.ExceptionResolver" />
 

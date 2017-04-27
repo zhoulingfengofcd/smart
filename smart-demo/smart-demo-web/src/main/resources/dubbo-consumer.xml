@@ -16,7 +16,9 @@
 
 	<!-- 用户服务接口 -->
 	<dubbo:reference interface="com.smart.demo.service.DemoService" id="demoService" />
-
+	<dubbo:reference interface="com.qingting.customer.baseserver.MonitorService" id="monitorService"/>
+	<dubbo:reference interface="com.qingting.customer.baseserver.ProjectService" id="projectService"/>
+	<dubbo:reference interface="com.qingting.customer.baseserver.EquipService" id="equipService"/>
 	<!-- 单点登录权限服务接口 -->
 	<dubbo:reference interface="com.smart.sso.rpc.AuthenticationRpcService" id="authenticationRpcService" />
 </beans>  

@@ -21,7 +21,12 @@
 			<artifactId>smart-demo-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
+		<!-- customer-server-api支持 -->
+		<dependency>
+			<groupId>com.qingting.customer</groupId>
+			<artifactId>customer-server-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- sso单点登录客户端 -->
 		<dependency>
 			<groupId>com.smart</groupId>
